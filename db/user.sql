@@ -1,0 +1,14 @@
+INSERT INTO `user`(`id`, `name`, `phone`, `password`, `role`, `created_time`, `is_deleted`) VALUES (2, '陈奕迅', '13522222222', '123456', 2, '2019-12-02 21:26:26', NULL);
+INSERT INTO `user`(`id`, `name`, `phone`, `password`, `role`, `created_time`, `is_deleted`) VALUES (3, '陈伟霆', '13533333333', '123456', 2, '2019-12-11 21:27:10', NULL);
+INSERT INTO `user`(`id`, `name`, `phone`, `password`, `role`, `created_time`, `is_deleted`) VALUES (4, '刘德华', '13544444444', '123456', 2, '2019-12-11 21:27:30', NULL);
+INSERT INTO `user`(`id`, `name`, `phone`, `password`, `role`, `created_time`, `is_deleted`) VALUES (5, '张国荣', '13555555555', '123456', 2, '2019-12-11 21:28:22', NULL);
+INSERT INTO `user`(`id`, `name`, `phone`, `password`, `role`, `created_time`, `is_deleted`) VALUES (6, '袁咏仪', '13566666666', '123456', 2, '2019-12-11 21:28:49', NULL);
+INSERT INTO `user`(`id`, `name`, `phone`, `password`, `role`, `created_time`, `is_deleted`) VALUES (7, '钟汉良', '13577777777', '123456', 2, '2019-12-11 21:29:07', NULL);
+INSERT INTO `user`(`id`, `name`, `phone`, `password`, `role`, `created_time`, `is_deleted`) VALUES (8, '黎明', '13111111111', '123456', 1, '2020-02-11 11:21:27', NULL);
+INSERT INTO `user`(`id`, `name`, `phone`, `password`, `role`, `created_time`, `is_deleted`) VALUES (2, '陈奕迅', '13522222222', '123456', 2, '2019-12-02 21:26:26', NULL);
+INSERT INTO `user`(`id`, `name`, `phone`, `password`, `role`, `created_time`, `is_deleted`) VALUES (3, '陈伟霆', '13533333333', '123456', 2, '2019-12-11 21:27:10', NULL);
+INSERT INTO `user`(`id`, `name`, `phone`, `password`, `role`, `created_time`, `is_deleted`) VALUES (4, '刘德华', '13544444444', '123456', 2, '2019-12-11 21:27:30', NULL);
+INSERT INTO `user`(`id`, `name`, `phone`, `password`, `role`, `created_time`, `is_deleted`) VALUES (5, '张国荣', '13555555555', '123456', 2, '2019-12-11 21:28:22', NULL);
+INSERT INTO `user`(`id`, `name`, `phone`, `password`, `role`, `created_time`, `is_deleted`) VALUES (6, '袁咏仪', '13566666666', '123456', 2, '2019-12-11 21:28:49', NULL);
+INSERT INTO `user`(`id`, `name`, `phone`, `password`, `role`, `created_time`, `is_deleted`) VALUES (7, '钟汉良', '13577777777', '123456', 2, '2019-12-11 21:29:07', NULL);
+INSERT INTO `user`(`id`, `name`, `phone`, `password`, `role`, `created_time`, `is_deleted`) VALUES (8, '黎明', '13111111111', '123456', 1, '2020-02-11 11:21:27', NULL);

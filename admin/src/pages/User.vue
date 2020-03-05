@@ -62,7 +62,8 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
+import userModel from '@/models/user'
 export default {
   data () {
     return {
@@ -80,10 +81,13 @@ export default {
     }
   },
   created () {
-    axios.get('/user').then(res => {
+    // axios.get('/user').then(res => {
+    //   this.userData = res.data.data
+    // }).catch(e => {
+    //   console.log(e)
+    // })
+    userModel.get().then(res => {
       this.userData = res.data.data
-    }).catch(e => {
-      console.log(e)
     })
   },
   methods: {
@@ -95,6 +99,9 @@ export default {
     },
     handleCancelEdit () {
       this.formEditShow = false
+      this.formBoxValue.name = ''
+      this.formBoxValue.password = ''
+      this.formBoxValue.phone = ''
     },
     handleEditShow (index, row) {
       this.formEditShow = true
@@ -117,7 +124,7 @@ export default {
         return
       }
 
-      axios.post('/user', params).then(res => {
+      userModel.post(params).then(res => {
         if (res.data.code === 200) {
           this.formBoxValue.name = ''
           this.formBoxValue.password = ''
@@ -129,12 +136,33 @@ export default {
           })
           location.reload()
         } else {
+          this.formBoxShow = false
           this.$message({
             type: 'info',
             message: '添加失败!'
           })
         }
+        console.log(res)
       })
+
+      // axios.post('/user', params).then(res => {
+      //   if (res.data.code === 200) {
+      //     this.formBoxValue.name = ''
+      //     this.formBoxValue.password = ''
+      //     this.formBoxValue.phone = ''
+      //     this.formBoxShow = false
+      //     this.$message({
+      //       type: 'success',
+      //       message: '添加成功!'
+      //     })
+      //     location.reload()
+      //   } else {
+      //     this.$message({
+      //       type: 'info',
+      //       message: '添加失败!'
+      //     })
+      //   }
+      // })
     },
     handleEditUser () {
       let id = this.formBoxID
@@ -143,7 +171,8 @@ export default {
       let phone = this.formBoxValue.phone
       let password = this.formBoxValue.password
       let params = { name, phone, password }
-      axios.put('/user/' + id, params).then(res => {
+
+      userModel.put(id, params).then(res => {
         if (res.data.code === 200) {
           this.userData[index].name = name
           this.userData[index].phone = phone
@@ -154,31 +183,56 @@ export default {
             message: '编辑成功!'
           })
         } else {
+          this.formEditShow = false
           this.$message({
             type: 'info',
             message: '编辑失败!'
           })
         }
       })
+      // axios.put('/user/' + id, params).then(res => {
+      //   if (res.data.code === 200) {
+      //     this.userData[index].name = name
+      //     this.userData[index].phone = phone
+      //     this.userData[index].password = password
+      //     this.formEditShow = false
+      //     this.$message({
+      //       type: 'success',
+      //       message: '编辑成功!'
+      //     })
+      //   } else {
+      //     this.$message({
+      //       type: 'info',
+      //       message: '编辑失败!'
+      //     })
+      //   }
+      // })
     },
     handleDelete (index, row) {
       let affirm = confirm('确定删除吗？')
       if (affirm) {
         let id = row.id
-        axios.delete('/user/' + id).then(res => {
-          if (res.data.code === 200) {
-            this.userData.splice(index, 1)
-            this.$message({
-              type: 'success',
-              message: '删除成功!'
-            })
-          } else {
-            this.$message({
-              type: 'info',
-              message: '删除失败!'
-            })
-          }
+        userModel.delete(id).then(res => {
+          this.userData.splice(index, 1)
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          })
         })
+        // axios.delete('/user/' + id).then(res => {
+        //   if (res.data.code === 200) {
+        //     this.userData.splice(index, 1)
+        //     this.$message({
+        //       type: 'success',
+        //       message: '删除成功!'
+        //     })
+        //   } else {
+        //     this.$message({
+        //       type: 'info',
+        //       message: '删除失败!'
+        //     })
+        //   }
+        // })
       }
     }
   }
