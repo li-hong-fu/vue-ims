@@ -142,7 +142,6 @@ export default {
             message: '添加失败!'
           })
         }
-        console.log(res)
       })
 
       // axios.post('/user', params).then(res => {

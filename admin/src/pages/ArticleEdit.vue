@@ -26,7 +26,9 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
+import articleModel from '@/models/article'
+import classifyModel from '@/models/classify'
 import { quillEditor } from 'vue-quill-editor'
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
@@ -80,16 +82,23 @@ export default {
   },
   created () {
     let id = this.$route.params.id
-    axios.get('/classify').then(res => {
-      this.classify = res.data.data
-      console.log(this.classify)
-    }).catch(e => {
-      console.log(e)
-    })
-
-    axios.get('/article/' + id).then(res => {
+    console.log(id)
+    articleModel.item(id).then(res => {
       this.formBoxValue = res.data.data[0]
     })
+    classifyModel.get().then(res => {
+      this.classify = res.data.data
+    })
+    // axios.get('/classify').then(res => {
+    //   this.classify = res.data.data
+    //   console.log(this.classify)
+    // }).catch(e => {
+    //   console.log(e)
+    // })
+
+    // axios.get('/article/' + id).then(res => {
+    //   this.formBoxValue = res.data.data[0]
+    // })
   },
   methods: {
     submitForm () {
@@ -98,7 +107,6 @@ export default {
       let classify = this.formBoxValue.classify_id
       let content = this.formBoxValue.content
       let params = { title, classify, content }
-
       if (!title || !classify || !content) {
         this.$message({
           type: 'error',
@@ -106,8 +114,8 @@ export default {
         })
         return
       }
-
-      axios.put('/article/edit/' + id, params).then(res => {
+      articleModel.put(id, params).then(res => {
+        console.log(res)
         if (res.data.code === 200) {
           this.$message({
             type: 'success',
@@ -121,6 +129,20 @@ export default {
           })
         }
       })
+      // axios.put('/article/edit/' + id, params).then(res => {
+      //   if (res.data.code === 200) {
+      //     this.$message({
+      //       type: 'success',
+      //       message: '修改成功!'
+      //     })
+      //     location.href = '/admin/article'
+      //   } else {
+      //     this.$message({
+      //       type: 'info',
+      //       message: '修改失败!'
+      //     })
+      //   }
+      // })
     }
   },
   components: {

@@ -24,7 +24,8 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
+import articleModel from '@/models/article'
 export default {
   data () {
     return {
@@ -32,7 +33,10 @@ export default {
     }
   },
   created () {
-    axios.get('/article').then(res => {
+    // axios.get('/article').then(res => {
+    //   this.articleData = res.data.data
+    // })
+    articleModel.get().then(res => {
       this.articleData = res.data.data
     })
   },
@@ -45,23 +49,28 @@ export default {
       let affirm = confirm('确定删除吗？')
       if (affirm) {
         let id = row.id
-        axios.delete('/article/' + id).then(res => {
-          if (res.data.code === 200) {
-            this.articleData.splice(index, 1)
-            this.$message({
-              type: 'success',
-              message: '删除成功!'
-            })
-          } else {
-            this.$message({
-              type: 'info',
-              message: '删除失败!'
-            })
-          }
+        articleModel.delete(id).then(res => {
+          this.articleData.splice(index, 1)
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          })
         })
+        // axios.delete('/article/' + id).then(res => {
+        //   if (res.data.code === 200) {
+        //     this.articleData.splice(index, 1)
+        //     this.$message({
+        //       type: 'success',
+        //       message: '删除成功!'
+        //     })
+        //   } else {
+        //     this.$message({
+        //       type: 'info',
+        //       message: '删除失败!'
+        //     })
+        //   }
+        // })
       }
-
-      console.log(index, row)
     }
   }
 }

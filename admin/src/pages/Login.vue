@@ -54,7 +54,8 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
+import loginModel from '@/models/login'
 export default {
   data () {
     return {
@@ -86,10 +87,8 @@ export default {
         if (!phone || !password) {
           return
         }
-        axios.post('/admin/login', params).then(res => {
-          console.log(res)
+        loginModel.post(params).then(res => {
           if (res.data.code === 200) {
-            console.log(res.data.token)
             localStorage.setItem('token', res.data.token)
             this.$message({
               type: 'success',
@@ -103,6 +102,23 @@ export default {
             })
           }
         })
+        // axios.post('/admin/login', params).then(res => {
+        //   console.log(res)
+        //   if (res.data.code === 200) {
+        //     console.log(res.data.token)
+        //     localStorage.setItem('token', res.data.token)
+        //     this.$message({
+        //       type: 'success',
+        //       message: '登录成功!'
+        //     })
+        //     this.$router.replace({ name: 'Article' })
+        //   } else {
+        //     this.$message({
+        //       type: 'error',
+        //       message: '登录失败，没有此用户!'
+        //     })
+        //   }
+        // })
       })
     }
   }

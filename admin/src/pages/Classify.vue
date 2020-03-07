@@ -49,7 +49,8 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
+import classifyModel from '@/models/classify'
 export default {
   data () {
     return {
@@ -62,10 +63,13 @@ export default {
     }
   },
   created () {
-    axios.get('/classify').then(res => {
+    // axios.get('/classify').then(res => {
+    //   this.classifyData = res.data.data
+    // }).catch(e => {
+    //   console.log(e)
+    // })
+    classifyModel.get().then(res => {
       this.classifyData = res.data.data
-    }).catch(e => {
-      console.log(e)
     })
   },
   methods: {
@@ -80,7 +84,6 @@ export default {
     handleAddClassify () {
       let name = this.formBoxValue
       let params = { name }
-
       if (!name) {
         this.$message({
           type: 'error',
@@ -88,14 +91,13 @@ export default {
         })
         return
       }
-
-      axios.post('/classify', params).then(res => {
+      classifyModel.post(params).then(res => {
         if (res.data.code === 200) {
           this.formBoxValue = ''
           this.formAddShow = false
           this.$message({
             type: 'success',
-            message: '添加成功!'
+            message: '添加成功'
           })
           location.reload()
         } else {
@@ -105,6 +107,23 @@ export default {
           })
         }
       })
+
+      // axios.post('/classify', params).then(res => {
+      //   if (res.data.code === 200) {
+      //     this.formBoxValue = ''
+      //     this.formAddShow = false
+      //     this.$message({
+      //       type: 'success',
+      //       message: '添加成功!'
+      //     })
+      //     location.reload()
+      //   } else {
+      //     this.$message({
+      //       type: 'info',
+      //       message: '添加失败!'
+      //     })
+      //   }
+      // })
     },
     handleEditShow (index, row) {
       this.formEditShow = true
@@ -117,7 +136,8 @@ export default {
       let index = this.formBoxIndex
       let name = this.formBoxValue
       let params = { name }
-      axios.put('/classify/' + id, params).then(res => {
+      classifyModel.put(id, params).then(res => {
+        console.log(res)
         if (res.data.code === 200) {
           this.classifyData[index].name = name
           this.formEditShow = false
@@ -133,13 +153,28 @@ export default {
           })
         }
       })
-      console.log(id, index)
+      // axios.put('/classify/' + id, params).then(res => {
+      //   if (res.data.code === 200) {
+      //     this.classifyData[index].name = name
+      //     this.formEditShow = false
+      //     this.$message({
+      //       type: 'success',
+      //       message: '编辑成功!'
+      //     })
+      //     location.reload()
+      //   } else {
+      //     this.$message({
+      //       type: 'info',
+      //       message: '编辑失败!'
+      //     })
+      //   }
+      // })
     },
     handleDelete (index, row) {
       let affirm = confirm('确定删除吗？')
       if (affirm) {
         let id = row.id
-        axios.delete('/classify/' + id).then(res => {
+        classifyModel.delete(id).then(res => {
           if (res.data.code === 200) {
             this.classifyData.splice(index, 1)
             this.$message({
@@ -153,6 +188,20 @@ export default {
             })
           }
         })
+        // axios.delete('/classify/' + id).then(res => {
+        //   if (res.data.code === 200) {
+        //     this.classifyData.splice(index, 1)
+        //     this.$message({
+        //       type: 'success',
+        //       message: '删除成功!'
+        //     })
+        //   } else {
+        //     this.$message({
+        //       type: 'info',
+        //       message: '删除失败!'
+        //     })
+        //   }
+        // })
       }
     }
   }

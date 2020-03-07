@@ -28,7 +28,6 @@ export default {
         message: '退出成功!'
       })
       this.$router.replace({ name: 'Login' })
-
       // axios.get('/admin/exit').then(res => {
       //   if (res.data.code === 200) {
       //     this.$message({

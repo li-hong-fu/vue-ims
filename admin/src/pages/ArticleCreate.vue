@@ -26,7 +26,9 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
+import articleModel from '@/models/article'
+import classifyModel from '@/models/classify'
 import { quillEditor } from 'vue-quill-editor'
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
@@ -38,7 +40,7 @@ export default {
       classify: [],
       formBoxValue: {
         title: '',
-        classify_id: '',
+        classify_id: null,
         content: ''
       },
       rules: {
@@ -79,10 +81,14 @@ export default {
     }
   },
   created () {
-    axios.get('/classify').then(res => {
+    // axios.get('/classify').then(res => {
+    //   this.classify = res.data.data
+    // }).catch(e => {
+    //   console.log(e)
+    // })
+    classifyModel.get().then(res => {
+      console.log(res)
       this.classify = res.data.data
-    }).catch(e => {
-      console.log(e)
     })
   },
   methods: {
@@ -92,8 +98,6 @@ export default {
       let content = this.formBoxValue.content
       let params = { title, classify, content }
 
-      console.log(params)
-
       if (!title || !classify || !content) {
         this.$message({
           type: 'error',
@@ -101,9 +105,7 @@ export default {
         })
         return
       }
-
-      axios.post('/article', params).then(res => {
-        console.log(res)
+      articleModel.post(params).then(res => {
         if (res.data.code === 200) {
           this.formBoxValue.title = ''
           this.formBoxValue.classify_id = ''
@@ -120,6 +122,24 @@ export default {
           })
         }
       })
+      // axios.post('/article', params).then(res => {
+      //   console.log(res)
+      //   if (res.data.code === 200) {
+      //     this.formBoxValue.title = ''
+      //     this.formBoxValue.classify_id = ''
+      //     this.formBoxValue.content = ''
+      //     this.$message({
+      //       type: 'success',
+      //       message: '添加成功!'
+      //     })
+      //     location.href = '/admin/article'
+      //   } else {
+      //     this.$message({
+      //       type: 'info',
+      //       message: '添加失败!'
+      //     })
+      //   }
+      // })
     },
     resetForm (formName) {
       this.$refs[formName].resetFields()
