@@ -10,7 +10,6 @@ import 'view-design/dist/styles/iview.css'
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.use(ViewUI)
-
 new Vue({
   router,
   store,

@@ -1,6 +1,6 @@
 <template>
 <div class="page-article-create">
-  <el-button type="primary" @click="()=>this.$router.back()">返回文章列表</el-button>
+  <!-- <el-button type="primary" @click="()=>this.$router.back()">返回文章列表</el-button> -->
   <el-form :model="formBoxValue" :rules="rules" ref="formBoxValue" label-width="50px" class="form-container">
     <el-form-item label="标题" prop="title">
       <el-input name="title" v-model="formBoxValue.title"></el-input>
@@ -82,7 +82,6 @@ export default {
   },
   created () {
     let id = this.$route.params.id
-    console.log(id)
     articleModel.item(id).then(res => {
       this.formBoxValue = res.data.data[0]
     })
@@ -155,11 +154,17 @@ export default {
     width: 80%;
     height: 100%;
     text-align: left;
-    button{
-      float: left;
-    }
     .form-container{
-      padding-top: 100px;
+      height: 100%;
+      .create-content{
+        height: 70%;
+        /deep/.el-form-item__content{
+          height: 100%;
+          /deep/.quill-editor.quill-editor{
+            height: 80%;
+          }
+        }
+      }
     }
   }
 </style>

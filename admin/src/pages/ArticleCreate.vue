@@ -87,7 +87,6 @@ export default {
     //   console.log(e)
     // })
     classifyModel.get().then(res => {
-      console.log(res)
       this.classify = res.data.data
     })
   },
@@ -155,5 +154,17 @@ export default {
     width: 80%;
     height: 100%;
     text-align: left;
+    .form-container{
+      height: 100%;
+      .create-content{
+        height: 70%;
+        /deep/.el-form-item__content{
+          height: 100%;
+          /deep/.quill-editor.quill-editor{
+            height: 80%;
+          }
+        }
+      }
+    }
   }
 </style>

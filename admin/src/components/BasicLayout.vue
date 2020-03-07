@@ -56,7 +56,7 @@ export default {
     border-bottom: 2px solid #e4e4e4;
     color: #333;
     text-align: center;
-    line-height: 160px;
+    line-height: 30px;
   }
 
   body > .el-container {

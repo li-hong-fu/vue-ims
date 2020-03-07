@@ -18,11 +18,11 @@ export default {
   },
   methods: {
     route () {
-      let token = localStorage.getItem('token')
-      if (!token) this.$router.replace({ name: 'Login' })
+      let token = localStorage.getItem('token')// 获取token
+      if (!token) this.$router.replace({ name: 'Login' })// 判断是否有token,如果没有定向登录页面
     },
     exit () {
-      localStorage.removeItem('token')
+      localStorage.removeItem('token')// 删除token
       this.$message({
         type: 'success',
         message: '退出成功!'

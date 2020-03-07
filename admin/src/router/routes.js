@@ -10,7 +10,10 @@ export default [
   {
     path: '/admin/login',
     name: 'Login',
-    component: Login
+    component: Login,
+    meta: {
+      title: '信息管理系统-登录'
+    }
   },
   {
     path: '/admin',
@@ -19,27 +22,42 @@ export default [
       {
         path: '/admin/user',
         name: 'User',
-        component: User
+        component: User,
+        meta: {
+          title: '信息管理系统-用户信息'
+        }
       },
       {
         path: '/admin/classify',
         name: 'Classify',
-        component: Classify
+        component: Classify,
+        meta: {
+          title: '信息管理系统-分类信息'
+        }
       },
       {
         path: '/admin/article',
         name: 'Article',
-        component: Article
+        component: Article,
+        meta: {
+          title: '信息管理系统-文章信息'
+        }
       },
       {
         path: '/admin/article/create',
         name: 'ArticleCreate',
-        component: ArticleCreate
+        component: ArticleCreate,
+        meta: {
+          title: '信息管理系统-添加文章'
+        }
       },
       {
         path: '/admin/article/edit/:id',
         name: 'ArticleEdit',
-        component: ArticleEdit
+        component: ArticleEdit,
+        meta: {
+          title: '信息管理系统-修改文章'
+        }
       }
     ]
   }

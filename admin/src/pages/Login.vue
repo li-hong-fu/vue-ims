@@ -89,7 +89,7 @@ export default {
         }
         loginModel.post(params).then(res => {
           if (res.data.code === 200) {
-            localStorage.setItem('token', res.data.token)
+            localStorage.setItem('token', res.data.token)// 把token放到本地储存
             this.$message({
               type: 'success',
               message: '登录成功!'
