@@ -5,8 +5,17 @@ import Article from '@/pages/Article'
 import ArticleCreate from '@/pages/ArticleCreate'
 import ArticleEdit from '@/pages/ArticleEdit'
 import BasicLayout from '@/components/BasicLayout.vue'
+import Index from '@/pages/Index'
 
 export default [
+  {
+    path: '/',
+    name: 'Index',
+    component: Index,
+    meta: {
+      title: '首页'
+    }
+  },
   {
     path: '/admin/login',
     name: 'Login',
