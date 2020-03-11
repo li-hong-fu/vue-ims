@@ -12,5 +12,8 @@ export default {
   },
   delete: function (id) {
     return request.delete(api.classifyItem(id))
+  },
+  item: function (id) {
+    return request.get(api.articleItem(id))
   }
 }

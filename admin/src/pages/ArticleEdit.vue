@@ -83,6 +83,7 @@ export default {
   created () {
     let id = this.$route.params.id
     articleModel.item(id).then(res => {
+      console.log(res)
       this.formBoxValue = res.data.data[0]
     })
     classifyModel.get().then(res => {

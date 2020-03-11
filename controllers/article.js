@@ -12,6 +12,7 @@ const articleControllers = {
           data.created_time = formatTime(data.created_time)
         }
       })
+      console.log(articles)
       res.json({code:200,data:articles})
     }catch(e){
       res.json({code:0,data:e})

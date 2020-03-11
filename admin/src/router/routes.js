@@ -17,10 +17,7 @@ export default [
       {
         path: '/',
         name: 'Home',
-        component: Home,
-        meta: {
-          title: '首页'
-        }
+        component: Home
       },
       {
         path: '/index/:id',

@@ -8,13 +8,14 @@
       </template>
     </el-breadcrumb>
   </el-header>
-  <el-main class="article-section"><Home/></el-main>
+  <el-main class="article-section">
+    <router-view></router-view>
+  </el-main>
 </div>
 </template>
 
 <script>
 import classifyModel from '@/models/classify'
-import Home from '@/pages/Home'
 export default {
   data () {
     return {
@@ -26,12 +27,10 @@ export default {
     classifyModel.get().then(res => {
       this.classifyData = res.data.data
       this.classifyData.map(data => {
+        console.log(data)
         this.breadcrumb.push(data.name)
       })
     })
-  },
-  components: {
-    Home
   }
 }
 </script>
