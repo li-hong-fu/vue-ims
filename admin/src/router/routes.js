@@ -5,16 +5,29 @@ import Article from '@/pages/Article'
 import ArticleCreate from '@/pages/ArticleCreate'
 import ArticleEdit from '@/pages/ArticleEdit'
 import BasicLayout from '@/components/BasicLayout.vue'
-import Index from '@/pages/Index'
+import BasicLayoutIndex from '@/components/BasicLayoutIndex.vue'
+import Home from '@/pages/Home'
+import HomeClassify from '@/pages/HomeClassify'
 
 export default [
   {
     path: '/',
-    name: 'Index',
-    component: Index,
-    meta: {
-      title: '首页'
-    }
+    component: BasicLayoutIndex,
+    children: [
+      {
+        path: '/',
+        name: 'Home',
+        component: Home,
+        meta: {
+          title: '首页'
+        }
+      },
+      {
+        path: '/index/:id',
+        name: 'HomeClassify',
+        component: HomeClassify
+      }
+    ]
   },
   {
     path: '/admin/login',
