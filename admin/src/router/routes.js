@@ -20,7 +20,7 @@ export default [
         component: Home
       },
       {
-        path: '/index/:id',
+        path: '/Article/:id',
         name: 'HomeClassify',
         component: HomeClassify
       }

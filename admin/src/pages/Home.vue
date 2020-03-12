@@ -7,6 +7,14 @@
       <p class="article-time">2020-02-12 15:07:51</p>
     </div>
   </div>
+  <el-pagination
+    @size-change="handleSizeChange"
+    @current-change="handleCurrentChange"
+    :page-sizes="[10, 20, 30, 40]"
+    :page-size="10"
+    layout="sizes, prev, pager, next"
+    :total="this.total">
+  </el-pagination>
 </div>
 </template>
 
@@ -16,7 +24,8 @@ export default {
   data () {
     return {
       articleData: [],
-      articleList: []
+      articleList: [],
+      total: null
     }
   },
   created () {
@@ -25,7 +34,16 @@ export default {
       this.articleData.map(data => {
         this.articleList.push(data)
       })
+      this.total = this.articleList.length
     })
+  },
+  methods: {
+    handleSizeChange (val) {
+      console.log(`每页 ${val} 条`)
+    },
+    handleCurrentChange (val) {
+      console.log(`当前页: ${val}`)
+    }
   }
 }
 </script>

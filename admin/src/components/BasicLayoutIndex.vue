@@ -3,8 +3,8 @@
   <el-header class="breadcrumb-section">
     <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: '/' }">全部</el-breadcrumb-item>
-      <template v-for="(item, index) in breadcrumb">
-        <el-breadcrumb-item :to="{ path: '/index/' + index }" :key="index">{{ item }}</el-breadcrumb-item>
+      <template v-for="item in breadcrumb">
+        <el-breadcrumb-item :to="{ path: '/Article/' + item.id }" :key="item.id">{{ item.name }}</el-breadcrumb-item>
       </template>
     </el-breadcrumb>
   </el-header>
@@ -27,8 +27,7 @@ export default {
     classifyModel.get().then(res => {
       this.classifyData = res.data.data
       this.classifyData.map(data => {
-        console.log(data)
-        this.breadcrumb.push(data.name)
+        this.breadcrumb.push(data)
       })
     })
   }

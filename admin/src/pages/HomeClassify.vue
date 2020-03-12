@@ -20,10 +20,25 @@ export default {
       articleList: []
     }
   },
+  watch: {
+    $route: 'getData'
+  },
   created () {
-    articleModel.item().then(res => {
-      console.log(res)
-    })
+    this.getData()
+  },
+  methods: {
+    getData () {
+      let id = this.$route.params.id
+      console.log(id)
+      articleModel.item(id).then(res => {
+        this.articleData = res.data.data
+        this.articleData.map(data => {
+          return data
+        })
+        this.articleList = this.articleData
+        console.log(this.articleList)
+      })
+    }
   }
 }
 </script>

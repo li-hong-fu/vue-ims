@@ -12,7 +12,6 @@ const articleControllers = {
           data.created_time = formatTime(data.created_time)
         }
       })
-      console.log(articles)
       res.json({code:200,data:articles})
     }catch(e){
       res.json({code:0,data:e})
@@ -21,7 +20,7 @@ const articleControllers = {
   index:async function(req, res, next){
     try{
       let id = req.params.id
-      const articles = await Article.select({"article.id":id})
+      const articles = await Article.select({"article.classify_id":id})
       .leftJoin('classify','classify.id','article.classify_id')
       .select('article.*',{'classify_name':'classify.name'})
       articles.forEach(data => {
