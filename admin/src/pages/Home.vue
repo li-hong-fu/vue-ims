@@ -1,6 +1,6 @@
 <template>
 <div class="article-list">
-  <div class="article-item" v-for="(item, index) in articleList" :key="index">
+  <div class="article-item" v-for="(item, index) in articletotal" :key="index">
     <span class="article-item-number">{{index + 1}}</span>
     <div class="article-item-text">
       <p class="article-title">{{item.title}}</p>
@@ -10,10 +10,11 @@
   <el-pagination
     @size-change="handleSizeChange"
     @current-change="handleCurrentChange"
-    :page-sizes="[10, 20, 30, 40]"
-    :page-size="10"
+    :current-page.sync="curPage"
+    :page-sizes="pageSizes"
+    :page-size="pageSize"
     layout="sizes, prev, pager, next"
-    :total="this.total">
+    :total="articletotal.length">
   </el-pagination>
 </div>
 </template>
@@ -24,22 +25,28 @@ export default {
   data () {
     return {
       articleData: [],
-      articleList: [],
-      total: null
+      articletotal: [],
+      datas: [],
+      pageSizes: [10, 20, 30, 40],
+      pageSize: 10,
+      curPage: [1]
     }
   },
   created () {
     articleModel.get().then(res => {
       this.articleData = res.data.data
       this.articleData.map(data => {
-        this.articleList.push(data)
+        this.articletotal.push(data)
       })
-      this.total = this.articleList.length
     })
   },
   methods: {
     handleSizeChange (val) {
       console.log(`每页 ${val} 条`)
+      let total = this.articletotal.length
+      let curPage = this.curPage
+      let showData = Math.ceil(total / val)
+      console.log(showData, curPage)
     },
     handleCurrentChange (val) {
       console.log(`当前页: ${val}`)
