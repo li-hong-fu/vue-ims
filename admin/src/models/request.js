@@ -8,13 +8,14 @@ export default {
     return axios.put(url, data, config)
   },
 
-  get: function (url, data = {}, config) {
-    let OPTIONS = Object.assign({ data }, config)
+  get: function (url, params = {}, config) {
+    let OPTIONS = Object.assign({ params }, config)
+    console.log(OPTIONS)
     return axios.get(url, OPTIONS)
   },
 
-  delete: function (url = '', data = {}, config) {
-    let OPTIONS = Object.assign({ data }, config)
+  delete: function (url = '', params = {}, config) {
+    let OPTIONS = Object.assign({ params }, config)
     return axios.delete(url, OPTIONS)
   }
 }

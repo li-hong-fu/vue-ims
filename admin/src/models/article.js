@@ -2,6 +2,7 @@ import request from './request'
 import api from './api'
 export default {
   get: function (data = {}) {
+    console.log(data)
     return request.get(api.article, data)
   },
   post: function (data = {}) {

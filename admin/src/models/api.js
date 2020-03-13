@@ -1,4 +1,6 @@
 export default {
+  index: `/`,
+  indexItem: (id) => `/index/${id}`,
   login: `/admin/login`,
   user: `/user`,
   userItem: (id) => `/user/${id}`,

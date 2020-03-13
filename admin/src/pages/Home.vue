@@ -10,7 +10,8 @@
   <el-pagination
     @size-change="handleSizeChange"
     @current-change="handleCurrentChange"
-    :current-page.sync="curPage"
+    :current-page.sync="currentPage"
+    :page-count="totalPage"
     :page-sizes="pageSizes"
     :page-size="pageSize"
     layout="sizes, prev, pager, next"
@@ -26,27 +27,31 @@ export default {
     return {
       articleData: [],
       articletotal: [],
-      datas: [],
       pageSizes: [10, 20, 30, 40],
       pageSize: 10,
-      curPage: [1]
+      totalPage: null,
+      currentPage: 1
     }
   },
   created () {
-    articleModel.get().then(res => {
-      this.articleData = res.data.data
-      this.articleData.map(data => {
-        this.articletotal.push(data)
-      })
-    })
+    this.handleSizeChange()
   },
   methods: {
     handleSizeChange (val) {
       console.log(`每页 ${val} 条`)
-      let total = this.articletotal.length
-      let curPage = this.curPage
-      let showData = Math.ceil(total / val)
-      console.log(showData, curPage)
+      val = val || 10
+      this.pageSize = val
+      let currentPage = this.currentPage
+      let params = { currentPage, val }
+      articleModel.get(params).then(res => {
+        this.articleData = res.data.data
+        this.articleData.map(data => {
+          return data
+        })
+        this.articletotal = this.articleData
+        console.log(this.articletotal.length)
+      })
+      console.log(this.articletotal.length)
     },
     handleCurrentChange (val) {
       console.log(`当前页: ${val}`)

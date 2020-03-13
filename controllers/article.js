@@ -3,14 +3,12 @@ const { formatTime } = require('./../utils/date.js');
 
 const articleControllers = {
   show:async function(req, res, next){
-    let total = req.query.total
-    let pageSizes = req.query.pageSizes
-    let pageSize = req.query.pageSize
-    let curPage = req.query.curPage
-    let offset = curPage * pageSize
-    console.log(total,pageSizes,pageSize)
+    let currentPage = req.query.currentPage
+    let pageSize = req.query.val
+    let offset = (currentPage - 1) * pageSize
+    console.log(currentPage,pageSize,offset)
     try{
-      const articles = await Article.all(total,pageSizes,pageSize,curPage)
+      const articles = await Article.all()
       .offset(offset)
       .limit(pageSize)
       .leftJoin('classify','classify.id','article.classify_id')
