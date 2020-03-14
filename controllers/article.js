@@ -3,11 +3,12 @@ const { formatTime } = require('./../utils/date.js');
 
 const articleControllers = {
   show:async function(req, res, next){
-    let currentPage = req.query.currentPage
-    let pageSize = req.query.val
+    let currentPage = req.query.currentPage || 1
+    let pageSize = req.query.val || 10
     let offset = (currentPage - 1) * pageSize
-    console.log(currentPage,pageSize,offset)
     try{
+      const total = await Article.all().count('id as total');
+      console.log(total)
       const articles = await Article.all()
       .offset(offset)
       .limit(pageSize)
@@ -18,7 +19,7 @@ const articleControllers = {
           data.created_time = formatTime(data.created_time)
         }
       })
-      res.json({code:200,data:articles})
+      res.json({code:200,data:{articles, total}})
     }catch(e){
       res.json({code:0,data:e})
     }
