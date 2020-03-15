@@ -7,6 +7,7 @@
         <el-breadcrumb-item :to="{ path: '/Article/' + item.id }" :key="item.id">{{ item.name }}</el-breadcrumb-item>
       </template>
     </el-breadcrumb>
+    <el-button type="text" @click="()=>this.$router.back()">管理员登录</el-button>
   </el-header>
   <el-main class="article-section">
     <router-view></router-view>
@@ -61,5 +62,10 @@ export default {
       }
     }
   }
+}
+button{
+  color: #ffffff;
+  font-size: 18px;
+  font-family: monospace;
 }
 </style>

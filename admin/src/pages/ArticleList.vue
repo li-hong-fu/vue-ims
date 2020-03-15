@@ -42,7 +42,6 @@ export default {
   },
   methods: {
     handleSizeChange (val) {
-      console.log(`每页 ${val} 条`)
       val = val || 10
       this.pageSize = val
       this.totalPage = Math.ceil(this.total / this.pageSize)
@@ -54,7 +53,12 @@ export default {
       })
     },
     handleCurrentChange (val) {
-      console.log(`当前页: ${val}`)
+      let currentPage = this.currentPage = val || 1
+      let params = { currentPage }
+      articleModel.get(params).then(res => {
+        let data = res.data.data
+        this.articleData = data.articles
+      })
     }
   }
 }
@@ -67,6 +71,7 @@ export default {
   background: #ffffff;
   height: 100px;
   margin-bottom: 2px;
+  cursor: pointer;
   .article-item-number{
     font-size: 20px;
     font-weight: 600;

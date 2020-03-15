@@ -6,8 +6,8 @@ import ArticleCreate from '@/pages/ArticleCreate'
 import ArticleEdit from '@/pages/ArticleEdit'
 import BasicLayout from '@/components/BasicLayout.vue'
 import BasicLayoutIndex from '@/components/BasicLayoutIndex.vue'
-import Home from '@/pages/Home'
-import HomeClassify from '@/pages/HomeClassify'
+import ArticleList from '@/pages/ArticleList'
+import ArticleListClassify from '@/pages/ArticleListClassify'
 
 export default [
   {
@@ -16,13 +16,16 @@ export default [
     children: [
       {
         path: '/',
-        name: 'Home',
-        component: Home
+        name: 'ArticleList',
+        component: ArticleList,
+        meta: {
+          title: '首页'
+        }
       },
       {
         path: '/Article/:id',
-        name: 'HomeClassify',
-        component: HomeClassify
+        name: 'ArticleListClassify',
+        component: ArticleListClassify
       }
     ]
   },

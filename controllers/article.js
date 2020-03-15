@@ -8,7 +8,6 @@ const articleControllers = {
     let offset = (currentPage - 1) * pageSize
     try{
       const total = await Article.all().count('id as total');
-      console.log(total)
       const articles = await Article.all()
       .offset(offset)
       .limit(pageSize)
@@ -25,9 +24,17 @@ const articleControllers = {
     }
   },
   index:async function(req, res, next){
+    let currentPage = req.query.currentPage || 1
+    let pageSize = req.query.val || 10
+    let offset = (currentPage - 1) * pageSize
+    console.log(currentPage,pageSize)
     try{
       let id = req.params.id
+      const total = await Article.select({classify_id:id}).count('id as total')
+      console.log(total)
       const articles = await Article.select({"article.classify_id":id})
+      .offset(offset)
+      .limit(pageSize)
       .leftJoin('classify','classify.id','article.classify_id')
       .select('article.*',{'classify_name':'classify.name'})
       articles.forEach(data => {
@@ -35,7 +42,7 @@ const articleControllers = {
           data.created_time = formatTime(data.created_time)
         }
       })
-      res.json({code:200,data:articles})
+      res.json({code:200,data:{articles, total}})
     }catch(e){
       res.json({code:0,data:e})
     }

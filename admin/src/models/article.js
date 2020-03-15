@@ -2,7 +2,6 @@ import request from './request'
 import api from './api'
 export default {
   get: function (data = {}) {
-    console.log(data)
     return request.get(api.article, data)
   },
   post: function (data = {}) {
@@ -14,7 +13,7 @@ export default {
   delete: function (id) {
     return request.delete(api.articleItem(id))
   },
-  item: function (id) {
-    return request.get(api.articleItem(id))
+  item: function (id, data = {}) {
+    return request.get(api.articleItem(id), data)
   }
 }

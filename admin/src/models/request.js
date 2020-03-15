@@ -10,7 +10,6 @@ export default {
 
   get: function (url, params = {}, config) {
     let OPTIONS = Object.assign({ params }, config)
-    console.log(OPTIONS)
     return axios.get(url, OPTIONS)
   },
 
