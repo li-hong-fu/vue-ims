@@ -4,7 +4,7 @@
     <span class="article-item-number">{{index + 1}}</span>
     <div class="article-item-text">
       <p class="article-title">{{item.title}}</p>
-      <p class="article-time">2020-02-12 15:07:51</p>
+      <p class="article-time">{{item.created_time}}</p>
     </div>
   </div>
   <el-pagination
@@ -43,7 +43,7 @@ export default {
   methods: {
     getData () {
       let id = this.$route.params.id
-      articleModel.item(id).then(res => {
+      articleModel.articleClassify(id).then(res => {
         let data = res.data.data
         this.articleData = data.articles
         this.total = data.total[0].total
@@ -56,7 +56,7 @@ export default {
       this.totalPage = Math.ceil(this.total / this.pageSize)
       let currentPage = this.currentPage
       let params = { currentPage, val }
-      articleModel.item(id, params).then(res => {
+      articleModel.articleClassify(id, params).then(res => {
         let data = res.data.data
         this.articleData = data.articles
       })
@@ -65,7 +65,7 @@ export default {
       let id = this.$route.params.id
       let currentPage = this.currentPage = val || 1
       let params = { currentPage }
-      articleModel.item(id, params).then(res => {
+      articleModel.articleClassify(id, params).then(res => {
         let data = res.data.data
         this.articleData = data.articles
       })

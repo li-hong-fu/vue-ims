@@ -36,20 +36,22 @@ export default {
     // axios.get('/article').then(res => {
     //   this.articleData = res.data.data
     // })
-    articleModel.get().then(res => {
+    articleModel.listShow().then(res => {
       this.articleData = res.data.data
     })
   },
   methods: {
     handleEdit (index, row) {
       let id = row.id
-      location.href = '/admin/article/edit/' + id
+      // location.href = '/admin/article/edit/' + id
+      this.$router.push('/admin/article/edit/' + id)
     },
     handleDelete (index, row) {
       let affirm = confirm('确定删除吗？')
       if (affirm) {
         let id = row.id
         articleModel.delete(id).then(res => {
+          console.log(res)
           this.articleData.splice(index, 1)
           this.$message({
             type: 'success',

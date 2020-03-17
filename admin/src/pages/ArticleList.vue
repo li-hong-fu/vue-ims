@@ -4,7 +4,7 @@
     <span class="article-item-number">{{index + 1}}</span>
     <div class="article-item-text">
       <p class="article-title">{{item.title}}</p>
-      <p class="article-time">2020-02-12 15:07:51</p>
+      <p class="article-time">{{item.created_time}}</p>
     </div>
   </div>
   <el-pagination

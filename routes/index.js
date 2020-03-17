@@ -16,6 +16,7 @@ router.get('/classify',classifyController.show);
 /* 文章显示 */
 router.get('/article',articleControllers.show);
 router.get('/article/:id',articleControllers.index);
-
+router.get('/admin/article',articleControllers.listShow);
+router.get('/admin/article/:id',articleControllers.item);
 
 module.exports = router;

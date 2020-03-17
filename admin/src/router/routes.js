@@ -11,11 +11,11 @@ import ArticleListClassify from '@/pages/ArticleListClassify'
 
 export default [
   {
-    path: '/',
+    path: '/article',
     component: BasicLayoutIndex,
     children: [
       {
-        path: '/',
+        path: '/article',
         name: 'ArticleList',
         component: ArticleList,
         meta: {

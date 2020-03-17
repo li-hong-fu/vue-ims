@@ -1,6 +1,9 @@
 import request from './request'
 import api from './api'
 export default {
+  listShow: function (data = {}) {
+    return request.get(api.articles, data)
+  },
   get: function (data = {}) {
     return request.get(api.article, data)
   },
@@ -13,7 +16,10 @@ export default {
   delete: function (id) {
     return request.delete(api.articleItem(id))
   },
-  item: function (id, data = {}) {
-    return request.get(api.articleItem(id), data)
+  articleClassify: function (id, data = {}) {
+    return request.get(api.articleClassify(id), data)
+  },
+  articlesItem: function (id, data = {}) {
+    return request.get(api.articlesItem(id), data)
   }
 }

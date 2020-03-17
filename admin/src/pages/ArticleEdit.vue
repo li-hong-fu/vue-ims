@@ -82,7 +82,8 @@ export default {
   },
   created () {
     let id = this.$route.params.id
-    articleModel.item(id).then(res => {
+    console.log(id)
+    articleModel.articlesItem(id).then(res => {
       console.log(res)
       this.formBoxValue = res.data.data[0]
     })
@@ -121,7 +122,8 @@ export default {
             type: 'success',
             message: '修改成功!'
           })
-          location.href = '/admin/article'
+          // location.href = '/admin/article'
+          this.$router.push('/admin/article')
         } else {
           this.$message({
             type: 'info',

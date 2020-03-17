@@ -50,6 +50,7 @@
         </el-form>
       </div>
     </div>
+    <el-button type="text" @click="()=>this.$router.push('/')">返回首页</el-button>
   </div>
 </template>
 
@@ -156,6 +157,13 @@ export default {
   padding-top: 40px;
   box-sizing: border-box;
   min-width: 400px;
+  position: relative;
+  .el-button--text{
+    position: absolute;
+    right: 10%;
+    font-size: 18px;
+    font-family: monospace;
+  }
 }
 .login-title {
   display: flex;

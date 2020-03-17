@@ -7,6 +7,8 @@ export default {
   classify: `/classify`,
   classifyItem: (id) => `/classify/${id}`,
   article: `/article`,
-  articleItem: (id) => `/article/${id}`,
+  articleClassify: (id) => `/article/${id}`,
+  articles: '/admin/article',
+  articlesItem: (id) => `/admin/article/${id}`,
   articleEdit: (id) => `/article/edit/${id}`
 }

@@ -2,12 +2,12 @@
 <div class="page-container">
   <el-header class="breadcrumb-section">
     <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/' }">全部</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/article' }">全部</el-breadcrumb-item>
       <template v-for="item in breadcrumb">
         <el-breadcrumb-item :to="{ path: '/Article/' + item.id }" :key="item.id">{{ item.name }}</el-breadcrumb-item>
       </template>
     </el-breadcrumb>
-    <el-button type="text" @click="()=>this.$router.back()">管理员登录</el-button>
+    <el-button type="text" @click="()=>this.$router.push('/admin/login')">管理员登录</el-button>
   </el-header>
   <el-main class="article-section">
     <router-view></router-view>
